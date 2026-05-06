@@ -797,6 +797,8 @@ function resetProductoForm(){
   }
   _prodImagenes=[];
   renderProductoGaleria();
+  const stlSel=document.getElementById('prod-stl-ref');
+  if(stlSel){ stlSel.innerHTML='<option value="">Sin STL vinculado</option>'+(DB.piezas||[]).map(pz=>`<option value="${pz.id}">${pz.nombre}</option>`).join(''); }
 }
 
 function openAddModal(){
