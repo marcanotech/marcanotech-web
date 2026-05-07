@@ -1023,5 +1023,21 @@
   </div>
 </section>
 
+<script>
+(function(){
+  function checkScrollHint(){
+    var hint = document.querySelector('.scroll-hint');
+    var stats = document.querySelector('.hero-stats');
+    if(!hint || !stats) return;
+    hint.style.display = '';
+    var hr = hint.getBoundingClientRect();
+    var sr = stats.getBoundingClientRect();
+    if(hr.top < sr.bottom + 20) hint.style.display = 'none';
+  }
+  checkScrollHint();
+  window.addEventListener('resize', checkScrollHint);
+  window.addEventListener('load', checkScrollHint);
+})();
+</script>
 </body>
 </html>
