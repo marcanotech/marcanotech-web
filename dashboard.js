@@ -2245,7 +2245,8 @@ function handleProdImgDrop(e){
   if(e.dataTransfer?.files?.length) addProductoImagenes(e.dataTransfer.files);
 }
 
-function toggleProdWeb(){
+function toggleProdWeb(e){
+  if(e) e.stopPropagation();
   const cb = document.getElementById('prod-publicar-web');
   const bg = document.getElementById('prod-toggle-bg');
   const dot = document.getElementById('prod-toggle-dot');
@@ -2304,7 +2305,7 @@ function deleteProducto(id){
 function renderProductos(){
   const sr=document.getElementById('productos-stats-row');
   if(sr){
-    const cats=['Kit completo','Body / Carrocería','Suspensión','Ruedas / Neumáticos','Hardware / Tech','Accesorios','Personalizado / Premium','Decoración / Home','Otro'];
+    const cats=['Kit completo','Body / Carrocería','Suspensión','Ruedas / Neumáticos','Hardware / Tech','Accesorios','Personalizado / Premium','Decoración / Home / Oficina','Otro'];
     const total=DB.productos.length;
     const sinStock=DB.productos.filter(p=>parseInt(p.stock||0)===0).length;
     sr.innerHTML=`<div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">${total}</div><div class="stat-delta neutral">productos</div></div>`+
