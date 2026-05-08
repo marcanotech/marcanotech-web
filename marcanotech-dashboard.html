@@ -648,25 +648,21 @@
               <input class="form-input" type="number" id="calc-minutos-nuevo" placeholder="0" min="0" max="59" oninput="recalcularCosto()">
             </div>
           </div>
-          <!-- Costos adicionales de pieza -->
+          <!-- Accesorios -->
           <div style="border-top:0.5px solid var(--border);margin-top:12px;padding-top:12px">
-            <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.5px;margin-bottom:10px">MATERIALES & COMPONENTES</div>
-            <div class="form-row">
-              <div class="form-group" style="margin-bottom:0">
-                <label class="form-label">Material adicional</label>
-                <input class="form-input" type="number" id="calc-mat-adicional" placeholder="0" value="0" step="0.01" oninput="recalcularCosto()">
-              </div>
-              <div class="form-group" style="margin-bottom:0">
-                <label class="form-label">Accesorios</label>
-                <input class="form-input" type="number" id="calc-accesorios" placeholder="0" value="0" step="0.01" oninput="recalcularCosto()">
-              </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.5px">ACCESORIOS</div>
+              <button onclick="addCalcAccesorio()" style="background:var(--bg3);color:var(--text2);border:0.5px solid var(--border2);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font)">+ Agregar</button>
             </div>
-            <div class="form-row" style="margin-top:8px">
-              <div class="form-group" style="margin-bottom:0">
-                <label class="form-label">Componentes</label>
-                <input class="form-input" type="number" id="calc-componentes" placeholder="0" value="0" step="0.01" oninput="recalcularCosto()">
-              </div>
+            <div id="calc-accesorios-container"></div>
+          </div>
+          <!-- Componentes -->
+          <div style="border-top:0.5px solid var(--border);margin-top:12px;padding-top:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.5px">COMPONENTES</div>
+              <button onclick="addCalcComponente()" style="background:var(--bg3);color:var(--text2);border:0.5px solid var(--border2);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font)">+ Agregar</button>
             </div>
+            <div id="calc-componentes-container"></div>
           </div>
         </div>
 

@@ -2897,6 +2897,8 @@ function renderMantenimiento(){
 // ════════════════════════════════
 let _calcMoneda = 'ARS';
 let _calcFilamentos = [{id:'f1', matId:'', precioPorKg:0, gramos:0}];
+let _calcAccesorios = [];
+let _calcComponentes = [];
 let _calcGananciaMode = 'multiplicador';
 let _calcDisenoMode = 'fijo';
 let _calcPostpMode = 'fijo';
@@ -2908,6 +2910,8 @@ function setCalcMoneda(m){
   _calcMoneda = m;
   document.querySelectorAll('.calc-currency-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('calc-cur-'+m).classList.add('active');
+  renderCalcAccesorios();
+  renderCalcComponentes();
   recalcularCosto();
 }
 
@@ -2991,6 +2995,90 @@ function onCalcMatChange(idx, sel){
   recalcularCosto();
 }
 
+// ── Accesorios dinámicos ──
+function addCalcAccesorio(){
+  _calcAccesorios.push({id:'ca'+Date.now(), accId:'', precio:0, cantidad:1});
+  renderCalcAccesorios();
+}
+function removeCalcAccesorio(idx){
+  _calcAccesorios.splice(idx,1);
+  renderCalcAccesorios();
+  recalcularCosto();
+}
+function onCalcAccChange(idx, sel){
+  const opt=sel.options[sel.selectedIndex];
+  _calcAccesorios[idx].accId=sel.value;
+  _calcAccesorios[idx].precio=parseFloat(opt.dataset.precio)||0;
+  renderCalcAccesorios();
+  recalcularCosto();
+}
+function renderCalcAccesorios(){
+  const cont=document.getElementById('calc-accesorios-container'); if(!cont) return;
+  if(!_calcAccesorios.length){ cont.innerHTML=''; return; }
+  const getP=a=>_calcMoneda==='ARS'?(a.precioARS||a.precio||0):(a.precio||0);
+  const opts='<option value="">Seleccionar accesorio...</option>'+
+    DB.accesorios.map(a=>`<option value="${a.id}" data-precio="${getP(a)}">${a.nombre}${a.codigo?' ('+a.codigo+')':''} — $${getP(a).toFixed(2)} c/u</option>`).join('');
+  cont.innerHTML=_calcAccesorios.map((a,i)=>`
+    <div class="calc-filamento-row">
+      <select class="form-input" style="margin-bottom:8px" onchange="onCalcAccChange(${i},this)">
+        ${opts.replace(`value="${a.accId}"`,`value="${a.accId}" selected`)}
+      </select>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Precio unit.</label>
+          <input class="form-input" type="number" value="${a.precio||''}" placeholder="0" step="0.01" oninput="_calcAccesorios[${i}].precio=parseFloat(this.value)||0;recalcularCosto()">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Cantidad</label>
+          <input class="form-input" type="number" value="${a.cantidad||1}" placeholder="1" min="1" step="1" oninput="_calcAccesorios[${i}].cantidad=parseFloat(this.value)||1;recalcularCosto()">
+        </div>
+        <button onclick="removeCalcAccesorio(${i})" style="background:none;border:none;color:var(--coral);cursor:pointer;padding:0 4px;font-size:18px;align-self:flex-end;padding-bottom:6px">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+// ── Componentes dinámicos ──
+function addCalcComponente(){
+  _calcComponentes.push({id:'cc'+Date.now(), compId:'', precio:0, cantidad:1});
+  renderCalcComponentes();
+}
+function removeCalcComponente(idx){
+  _calcComponentes.splice(idx,1);
+  renderCalcComponentes();
+  recalcularCosto();
+}
+function onCalcCompChange(idx, sel){
+  const opt=sel.options[sel.selectedIndex];
+  _calcComponentes[idx].compId=sel.value;
+  _calcComponentes[idx].precio=parseFloat(opt.dataset.precio)||0;
+  renderCalcComponentes();
+  recalcularCosto();
+}
+function renderCalcComponentes(){
+  const cont=document.getElementById('calc-componentes-container'); if(!cont) return;
+  if(!_calcComponentes.length){ cont.innerHTML=''; return; }
+  const getP=c=>_calcMoneda==='ARS'?(c.precioARS||c.precio||0):(c.precio||0);
+  const opts='<option value="">Seleccionar componente...</option>'+
+    DB.componentes.map(c=>`<option value="${c.id}" data-precio="${getP(c)}">${c.nombre}${c.codigo?' ('+c.codigo+')':''} — $${getP(c).toFixed(2)} c/u</option>`).join('');
+  cont.innerHTML=_calcComponentes.map((c,i)=>`
+    <div class="calc-filamento-row">
+      <select class="form-input" style="margin-bottom:8px" onchange="onCalcCompChange(${i},this)">
+        ${opts.replace(`value="${c.compId}"`,`value="${c.compId}" selected`)}
+      </select>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Precio unit.</label>
+          <input class="form-input" type="number" value="${c.precio||''}" placeholder="0" step="0.01" oninput="_calcComponentes[${i}].precio=parseFloat(this.value)||0;recalcularCosto()">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Cantidad</label>
+          <input class="form-input" type="number" value="${c.cantidad||1}" placeholder="1" min="1" step="1" oninput="_calcComponentes[${i}].cantidad=parseFloat(this.value)||1;recalcularCosto()">
+        </div>
+        <button onclick="removeCalcComponente(${i})" style="background:none;border:none;color:var(--coral);cursor:pointer;padding:0 4px;font-size:18px;align-self:flex-end;padding-bottom:6px">✕</button>
+      </div>
+    </div>`).join('');
+}
+
 // ── Main calculation ──
 function recalcularCosto(){
   const kwh = parseFloat(document.getElementById('calc-kwh-nuevo')?.value)||0;
@@ -3002,9 +3090,8 @@ function recalcularCosto(){
   const mins = parseFloat(document.getElementById('calc-minutos-nuevo')?.value)||0;
   const tiempoH = horas + mins/60;
   const insumos = parseFloat(document.getElementById('calc-insumos')?.value)||0;
-  const matAdicional = parseFloat(document.getElementById('calc-mat-adicional')?.value)||0;
-  const accesorios = parseFloat(document.getElementById('calc-accesorios')?.value)||0;
-  const componentes = parseFloat(document.getElementById('calc-componentes')?.value)||0;
+  const costAccesorios = _calcAccesorios.reduce((s,a)=>s+(a.precio||0)*(a.cantidad||1), 0);
+  const costComponentes = _calcComponentes.reduce((s,c)=>s+(c.precio||0)*(c.cantidad||1), 0);
   const comisionPct = parseFloat(document.getElementById('calc-comision')?.value)||0;
 
   // Material cost
@@ -3022,7 +3109,7 @@ function recalcularCosto(){
 
   // Additional costs
   const costMargenError = costoBase * (margenError/100);
-  const costInsumos = insumos + matAdicional + accesorios + componentes;
+  const costInsumos = insumos + costAccesorios + costComponentes;
 
   // Diseño
   let costDiseno = 0;
@@ -3088,9 +3175,8 @@ function recalcularCosto(){
     <div class="calc-result-row"><span class="label">Margen Error (${margenError}%)</span><span class="val">${fmt(costMargenError)}</span></div>
     <div class="calc-result-row"><span class="label">Costo Producción</span><span class="val">${fmt(costProduccion)}</span></div>
     ${insumos>0?`<div class="calc-result-row"><span class="label">Insumos</span><span class="val">${fmt(insumos)}</span></div>`:''}
-    ${matAdicional>0?`<div class="calc-result-row"><span class="label">Material adicional</span><span class="val">${fmt(matAdicional)}</span></div>`:''}
-    ${accesorios>0?`<div class="calc-result-row"><span class="label">Accesorios</span><span class="val">${fmt(accesorios)}</span></div>`:''}
-    ${componentes>0?`<div class="calc-result-row"><span class="label">Componentes</span><span class="val">${fmt(componentes)}</span></div>`:''}
+    ${costAccesorios>0?`<div class="calc-result-row"><span class="label">Accesorios</span><span class="val">${fmt(costAccesorios)}</span></div>`:''}
+    ${costComponentes>0?`<div class="calc-result-row"><span class="label">Componentes</span><span class="val">${fmt(costComponentes)}</span></div>`:''}
     <div class="calc-result-row" style="padding-top:8px;border-top:0.5px solid var(--border2);margin-top:4px"><span class="label" style="font-weight:700;color:var(--text)">Total Costos</span><span class="val" style="font-weight:700;color:var(--text)">${fmt(totalCostos)}</span></div>`;
 
   // Final price
@@ -3193,6 +3279,8 @@ Generado con MarcanoTech Dashboard`;
 
 function renderCostos(){
   renderCalcFilamentos();
+  renderCalcAccesorios();
+  renderCalcComponentes();
   renderCalcPerfiles();
   // Populate impresora select
   const sel = document.getElementById('calc-impresora');
