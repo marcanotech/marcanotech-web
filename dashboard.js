@@ -2401,7 +2401,9 @@ function renderProductos(){
   grid.innerHTML = DB.productos.map(p=>{
     const stock=parseInt(p.stock||0);
     const sc = stock>5?'var(--teal)':stock>0?'var(--amber)':'var(--coral)';
-    const arsStr = p.precio ? (window._dolar?`$${Math.round(parseFloat(p.precio)*window._dolar).toLocaleString('es-AR')} ARS / `:'') + `US$${parseFloat(p.precio).toFixed(2)}` : '—';
+    const usdP = parseFloat(p.precio)||0;
+    const arsP = usdP && _dolarRate ? Math.round(usdP*_dolarRate) : null;
+    const arsStr = usdP ? (arsP ? `$${arsP.toLocaleString('es-AR')}<br><span style="font-size:10px;color:var(--text3)">US$${usdP.toFixed(2)}</span>` : `US$${usdP.toFixed(2)}`) : '—';
     const fabInfo = [p.tiempo?`⏱ ${p.tiempo}`:'', p.gramos?`${p.gramos}g`:''].filter(Boolean).join(' · ');
     const imgSrc = p.imagen || (Array.isArray(p.imagenes) && p.imagenes[0]?.dataUrl) || '';
     const webBadge = p.publicarWeb
