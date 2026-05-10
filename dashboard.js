@@ -3314,7 +3314,7 @@ function cargarPerfilCalc(id, silent){
   set('calc-comision', p.comision);
   if(p.moneda) setCalcMoneda(p.moneda);
   if(p.gananciaMode) setCalcToggle('ganancia', p.gananciaMode);
-  set('calc-perfil-nombre', p.nombre);
+  if(!silent) set('calc-perfil-nombre', p.nombre);
   localStorage.setItem('calc_ultimo_perfil', id);
   recalcularCosto();
   if(!silent) showToast(`Perfil "${p.nombre}" cargado`);
