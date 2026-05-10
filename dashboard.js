@@ -1133,14 +1133,15 @@ function renderGraficos(){
       // Also show per-material totals
       const byMat = {};
       entries.forEach(h=>{
-        const k = h.materialNombre||'Sin material';
+        const k = `${h.materialNombre||'Sin material'}||${h.materialMarca||''}`;
         byMat[k] = (byMat[k]||0) + (h.gramosUsados||0);
       });
-      const matSummary = Object.entries(byMat).sort((a,b)=>b[1]-a[1]).map(([name,g])=>`
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:0.5px solid var(--border)">
-          <span style="font-size:12px;color:var(--text)">${name}</span>
+      const matSummary = Object.entries(byMat).sort((a,b)=>b[1]-a[1]).map(([key,g])=>{
+        const [name, marca] = key.split('||');
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:0.5px solid var(--border)">
+          <span style="font-size:12px;color:var(--text)">${name}${marca?` <span style="font-size:10px;color:var(--text3);font-weight:400">${marca}</span>`:''}</span>
           <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ferrari)">${parseFloat(g||0).toFixed(2)}g</span>
-        </div>`).join('');
+        </div>`;}).join('');
       const matEl = document.getElementById('graf-materiales');
       if(matEl) matEl.innerHTML = matSummary || '<div style="color:var(--text3);font-size:12px">Sin datos</div>';
     }
@@ -1167,7 +1168,8 @@ function renderGraficos(){
     if(!DB.materiales.length){
       invEl.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text3);font-size:12px">Sin materiales registrados</div>';
     } else {
-      invEl.innerHTML = DB.materiales.map(m=>{
+      const matsOrdenados = [...DB.materiales].sort((a,b)=>(b.total-b.stock)-(a.total-a.stock));
+      invEl.innerHTML = matsOrdenados.map(m=>{
         const pct = m.total>0 ? Math.round((m.stock/m.total)*100) : 0;
         const c = pct>50?'var(--teal)':pct>20?'var(--amber)':'var(--coral)';
         const statusLabel = pct>50?'OK':pct>20?'Bajo':'Crítico';
@@ -3299,6 +3301,7 @@ function cargarPerfilCalc(id, silent){
   set('calc-comision', p.comision);
   if(p.moneda) setCalcMoneda(p.moneda);
   if(p.gananciaMode) setCalcToggle('ganancia', p.gananciaMode);
+  set('calc-perfil-nombre', p.nombre);
   localStorage.setItem('calc_ultimo_perfil', id);
   recalcularCosto();
   if(!silent) showToast(`Perfil "${p.nombre}" cargado`);
@@ -3400,7 +3403,7 @@ function renderEstadisticas(){
           const c=pct<20?'var(--coral)':pct<40?'var(--amber)':'var(--teal)';
           return `<div style="display:flex;align-items:center;gap:10px">
             <div style="width:8px;height:8px;border-radius:50%;background:${m.colorHex};flex-shrink:0;border:0.5px solid var(--border2)"></div>
-            <div style="font-size:11px;color:var(--text2);font-family:var(--mono);flex:1">${m.tipo} ${m.color}</div>
+            <div style="font-size:11px;color:var(--text2);font-family:var(--mono);flex:1">${m.tipo} ${m.color}${m.marca?` <span style="color:var(--text3)">${m.marca}</span>`:''}</div>
             <div style="width:80px;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${c};border-radius:3px"></div></div>
             <div style="font-size:10px;color:var(--text3);font-family:var(--mono);width:32px;text-align:right">${pct}%</div>
           </div>`;
