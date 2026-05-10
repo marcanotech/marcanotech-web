@@ -3494,7 +3494,8 @@ function renderDashboard(){
   // Materials panel
   const mp=document.getElementById('dash-materials-panel');
   if(DB.materiales.length){
-    mp.innerHTML=`<div class="material-list">`+DB.materiales.slice(0,6).map(m=>{
+    const matsOrdenadosDash=[...DB.materiales].sort((a,b)=>(b.total-b.stock)-(a.total-a.stock));
+    mp.innerHTML=`<div class="material-list">`+matsOrdenadosDash.slice(0,6).map(m=>{
       const pct=Math.round((m.stock/m.total)*100);
       const c=pct<20?'var(--coral)':pct<40?'var(--amber)':'var(--teal)';
       return `<div class="material-item">
