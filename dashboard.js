@@ -459,6 +459,18 @@ function firebaseToArray(val){
   return [];
 }
 
+function migrarHistorialMarca(){
+  if(!DB.timerHistorial||!DB.materiales) return;
+  let changed = false;
+  DB.timerHistorial.forEach(h=>{
+    if(h.materialNombre && !h.materialMarca){
+      const matches = DB.materiales.filter(m=>`${m.tipo} ${m.color}`===h.materialNombre);
+      if(matches.length===1){ h.materialMarca = matches[0].marca||''; changed=true; }
+    }
+  });
+  if(changed) persist(KEYS.timerHistorial);
+}
+
 function subscribeData(){
   fbRef.once('value').then(snapshot=>{
     const fbData = snapshot.val();
@@ -482,6 +494,7 @@ function subscribeData(){
           hydrateImagesFromStorage(DB[k], k);
         }
       });
+      migrarHistorialMarca();
       updateBadges();
       renderSection(currentSection);
       checkMantPending();
