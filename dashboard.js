@@ -697,6 +697,8 @@ function setSidebarImpresora(id){
 // ════════════════════════════════
 let _dolarRate = null;
 let _dolarLastFetch = 0;
+// Load cached rate immediately so it's available on first render
+(()=>{ try{ const c=JSON.parse(localStorage.getItem('wl_dolar')||'null'); if(c&&c.rate){ _dolarRate=c.rate; _dolarLastFetch=c.ts; } }catch(e){} })();
 
 async function fetchDolar(){
   const now = Date.now();
@@ -708,6 +710,7 @@ async function fetchDolar(){
     _dolarLastFetch = now;
     localStorage.setItem('wl_dolar', JSON.stringify({rate:_dolarRate, ts:now}));
     updateDolarDisplay();
+    if(currentSection==='productos'||currentSection==='dashboard') renderSection(currentSection);
     return _dolarRate;
   } catch(e){
     const cached = JSON.parse(localStorage.getItem('wl_dolar')||'null');
