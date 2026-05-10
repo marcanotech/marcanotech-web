@@ -1086,9 +1086,30 @@ function renderGraficos(){
   // ── Consumo historial from timer ──
   const consumoEl = document.getElementById('consumo-historial-list');
   if(consumoEl){
-    const entries = DB.timerHistorial.filter(h=>h.gramosUsados>0);
-    if(!entries.length){
+    const filtroFecha = (document.getElementById('graf-filtro-fecha')?.value||'').toLowerCase().trim();
+    const filtroTrabajo = (document.getElementById('graf-filtro-trabajo')?.value||'').toLowerCase().trim();
+    const filtroMat = document.getElementById('graf-filtro-material')?.value||'';
+
+    // Populate material filter options (preserve selected)
+    const matSel = document.getElementById('graf-filtro-material');
+    if(matSel && matSel.options.length <= 1){
+      const matNames = [...new Set(DB.timerHistorial.filter(h=>h.gramosUsados>0&&h.materialNombre).map(h=>h.materialNombre))].sort();
+      matSel.innerHTML = '<option value="">Todos los materiales</option>' +
+        matNames.map(n=>`<option value="${n}" ${filtroMat===n?'selected':''}>${n}</option>`).join('');
+    }
+
+    const allEntries = DB.timerHistorial.filter(h=>h.gramosUsados>0);
+    const entries = allEntries.filter(h=>{
+      if(filtroFecha && !(h.fecha||'').toLowerCase().includes(filtroFecha)) return false;
+      if(filtroTrabajo && !(h.nombre||'').toLowerCase().includes(filtroTrabajo)) return false;
+      if(filtroMat && h.materialNombre!==filtroMat) return false;
+      return true;
+    });
+
+    if(!allEntries.length){
       consumoEl.innerHTML = `<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">Sin registros de consumo. Finaliza impresiones con material y gramos para ver aquí.</div>`;
+    } else if(!entries.length){
+      consumoEl.innerHTML = `<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">Sin resultados para el filtro aplicado.</div>`;
     } else {
       const totalG = entries.reduce((a,h)=>a+parseFloat(h.gramosUsados||0),0);
       consumoEl.innerHTML = `
@@ -1140,6 +1161,35 @@ function renderGraficos(){
       <div class="stat-card"><div class="stat-label">% Consumo</div><div class="stat-value">${pct}%</div><div class="stat-delta neutral">del inventario</div></div>
       <div class="stat-card"><div class="stat-label">Valor stock</div><div class="stat-value">$${Math.round(totalCosto).toLocaleString('es-AR')}</div><div class="stat-delta neutral">ARS total</div></div>`;
   }
+  // ── Estado del inventario ──
+  const invEl = document.getElementById('graf-inventario');
+  if(invEl){
+    if(!DB.materiales.length){
+      invEl.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text3);font-size:12px">Sin materiales registrados</div>';
+    } else {
+      invEl.innerHTML = DB.materiales.map(m=>{
+        const pct = m.total>0 ? Math.round((m.stock/m.total)*100) : 0;
+        const c = pct>50?'var(--teal)':pct>20?'var(--amber)':'var(--coral)';
+        const statusLabel = pct>50?'OK':pct>20?'Bajo':'Crítico';
+        const precioKg = m.precioARS || (m.precio ? m.precio*(_dolarRate||1) : 0);
+        const valorStock = ((m.stock||0)/1000)*precioKg;
+        return `<div style="padding:8px 0;border-bottom:0.5px solid var(--border)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+            <span style="font-size:12px;color:var(--text);font-weight:600">${m.tipo} ${m.color} <span style="font-weight:400;color:var(--text3);font-size:10px">${m.marca||''}</span></span>
+            <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px;background:${c}1a;color:${c}">${statusLabel}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">${m.stock||0}g / ${m.total||0}g (${pct}%)</span>
+            ${valorStock>0?`<span style="font-size:10px;color:var(--text3);font-family:var(--mono)">$${Math.round(valorStock).toLocaleString('es-AR')}</span>`:''}
+          </div>
+          <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${c};border-radius:3px;transition:width 0.3s"></div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+  }
+
   const chartEl = document.getElementById('chart-filamentos');
   if(chartEl && DB.materiales.length){
     const bars = DB.materiales.map(m=>{
@@ -1326,7 +1376,15 @@ function editTimerEntry(id){
   document.getElementById('tedit-gramos').value = h.gramosUsados||'';
   document.getElementById('tedit-impresora').value = h.impresora||'';
   document.getElementById('tedit-fecha').value = h.fecha||'';
-  // Populate material select
+  const proyEl = document.getElementById('tedit-proyecto');
+  if(proyEl){
+    proyEl.innerHTML = '<option value="">Sin proyecto</option>' +
+      DB.proyectos.map(p=>`<option value="${p.id}" ${h.proyectoId===p.id?'selected':''}>${p.nombre}</option>`).join('');
+    if(!h.proyectoId && h.proyectoNombre){
+      const opt = [...proyEl.options].find(o=>o.text===h.proyectoNombre);
+      if(opt) opt.selected=true;
+    }
+  }
   const sel = document.getElementById('tedit-material');
   if(sel){
     sel.innerHTML = '<option value="">Sin material</option>' +
@@ -1344,6 +1402,8 @@ function saveTimerEntry(){
   const idx = DB.timerHistorial.findIndex(x=>x.id===id); if(idx<0) return;
   const matSel = document.getElementById('tedit-material');
   const mat = DB.materiales.find(m=>m.id===matSel?.value);
+  const proyEl = document.getElementById('tedit-proyecto');
+  const proy = DB.proyectos.find(p=>p.id===proyEl?.value);
   DB.timerHistorial[idx] = {
     ...DB.timerHistorial[idx],
     nombre: document.getElementById('tedit-nombre').value,
@@ -1353,6 +1413,8 @@ function saveTimerEntry(){
     fecha: document.getElementById('tedit-fecha').value,
     materialId: mat?.id||'',
     materialNombre: mat ? `${mat.tipo} ${mat.color}` : DB.timerHistorial[idx].materialNombre||'',
+    proyectoId: proy?.id||'',
+    proyectoNombre: proy?.nombre||'',
   };
   persist(KEYS.timerHistorial);
   closeModal('modal-timer-edit');
@@ -3222,7 +3284,7 @@ function guardarPerfilCalc(){
   showToast(`Perfil "${nombre}" guardado ✓`);
 }
 
-function cargarPerfilCalc(id){
+function cargarPerfilCalc(id, silent){
   const p = _calcPerfiles.find(x=>x.id===id); if(!p) return;
   const set = (elId, val)=>{ const el=document.getElementById(elId); if(el&&val!==undefined) el.value=val; };
   set('calc-kwh-nuevo', p.kwh);
@@ -3235,8 +3297,9 @@ function cargarPerfilCalc(id){
   set('calc-comision', p.comision);
   if(p.moneda) setCalcMoneda(p.moneda);
   if(p.gananciaMode) setCalcToggle('ganancia', p.gananciaMode);
+  localStorage.setItem('calc_ultimo_perfil', id);
   recalcularCosto();
-  showToast(`Perfil "${p.nombre}" cargado`);
+  if(!silent) showToast(`Perfil "${p.nombre}" cargado`);
 }
 
 function renderCalcPerfiles(){
@@ -3289,6 +3352,14 @@ function renderCostos(){
   if(sel){
     sel.innerHTML = '<option value="">Seleccionar impresora...</option>' +
       DB.impresoras.map(i=>`<option value="${i.id}">${i.codigo||''} ${i.nombre}</option>`).join('');
+  }
+  // Auto-restore last used profile
+  const lastId = localStorage.getItem('calc_ultimo_perfil');
+  if(lastId && _calcPerfiles.find(p=>p.id===lastId)){
+    const pSel = document.getElementById('calc-perfil-select');
+    if(pSel) pSel.value = lastId;
+    cargarPerfilCalc(lastId, true);
+    return;
   }
   recalcularCosto();
 }
