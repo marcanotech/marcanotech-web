@@ -1403,9 +1403,11 @@ function editTimerEntry(id){
   const sel = document.getElementById('tedit-material');
   if(sel){
     sel.innerHTML = '<option value="">Sin material</option>' +
-      DB.materiales.map(m=>`<option value="${m.id}" ${h.materialId===m.id?'selected':''}>${m.tipo} ${m.color}</option>`).join('');
-    if(h.materialNombre){
-      const opt = [...sel.options].find(o=>o.text.includes(h.materialNombre.split(' ')[0]));
+      DB.materiales.map(m=>`<option value="${m.id}" ${h.materialId===m.id?'selected':''}>${m.tipo} ${m.color}${m.marca?` — ${m.marca}`:''}</option>`).join('');
+    if(!h.materialId && h.materialNombre){
+      const fullName = h.materialMarca ? `${h.materialNombre} — ${h.materialMarca}` : h.materialNombre;
+      const opt = [...sel.options].find(o=>o.text===fullName) ||
+                  [...sel.options].find(o=>o.text.startsWith(h.materialNombre));
       if(opt) opt.selected=true;
     }
   }
