@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MDAgNjAwIiBvdmVyZmxvdz0iaGlkZGVuIj48ZwogICAgIGlkPSJnMSI+CiAgICA8ZwogICAgICAgaWQ9ImcyIgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOC44MjM1Mjk0LC0xMS43NjQ3MDYpIj4KICAgICAgPGcKICAgICAgICAgaWQ9Imc3NzkiCiAgICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MC41NDIwNCwtMjYuNzYwNTYzKSI+CiAgICAgICAgPHBhdGgKICAgICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTojZmY2NjAwO3N0cm9rZS13aWR0aDoyO3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjA7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1kYXNob2Zmc2V0OjA7c3Ryb2tlLW9wYWNpdHk6MTtwYWludC1vcmRlcjpub3JtYWwiCiAgICAgICAgICAgZD0ibSA0MTkuMzQxNTYsNTk4LjM1MzkxIGggMjYuNzQ4OTcgTCA0MzIuOTIxODEsNjE4LjEwNyBaIgogICAgICAgICAgIGlkPSJwYXRoNzc2IiAvPgogICAgICAgIDxwYXRoCiAgICAgICAgICAgc3R5bGU9ImZpbGw6I2ZmNjYwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6I2ZmNjYwMDtzdHJva2Utd2lkdGg6Mi4wNDA1MjtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDowO3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2UtZGFzaG9mZnNldDowO3N0cm9rZS1vcGFjaXR5OjE7cGFpbnQtb3JkZXI6bm9ybWFsIgogICAgICAgICAgIGQ9Im0gNDA3LjE0MjQyLDU3OS40NDE5MyBoIDUyLjg2MDczIGwgLTguNTk1MjQsMTEuMDc0OTkgaCAtMzYuOTU5NTQgeiIKICAgICAgICAgICBpZD0icGF0aDc3OCIgLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz48L3N2Zz4=">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipos de PLA: referencia visual — MarcanoTech</title>
+<meta name="description" content="Guía visual completa de los tipos de PLA disponibles en Argentina: apariencia, capas, sensación visual y usos recomendados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#000;--dark1:#0a0a0c;--dark2:#111116;--dark3:#18181e;
+  --navy:#1a3a6b;--navy-l:#4a7fd4;--ferrari:#f97316;--accent:#cc0000;--silver:#9eaab8;--white:#f4f4f6;
+  --font-d:'Bebas Neue',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-b);background:var(--dark1);color:var(--white);line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+nav{position:sticky;top:0;z-index:50;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,12,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.logo{font-family:var(--font-d);font-size:20px;letter-spacing:1px;}
+.logo span{color:var(--ferrari);}
+.back-btn{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--silver);padding:8px 16px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;transition:all 0.2s;}
+.back-btn:hover{color:var(--white);border-color:var(--accent);}
+.hero{padding:72px 48px 56px;max-width:900px;margin:0 auto;}
+.cat-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(204,0,0,0.1);border:1px solid rgba(204,0,0,0.3);padding:5px 14px;border-radius:100px;font-size:11px;font-family:var(--font-m);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;}
+.hero h1{font-family:var(--font-d);font-size:clamp(48px,7vw,84px);line-height:0.95;letter-spacing:1px;margin-bottom:20px;}
+.hero h1 span{color:var(--accent);}
+.hero p{font-size:16px;color:var(--silver);max-width:640px;font-weight:300;}
+.toc{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:24px 28px;max-width:860px;margin:48px auto 48px;width:calc(100% - 96px);}
+.toc-title{font-size:12px;font-family:var(--font-m);letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+.toc-links{display:flex;flex-wrap:wrap;gap:8px;}
+.toc-link{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:var(--silver);padding:6px 14px;border-radius:6px;font-size:12px;transition:all 0.2s;}
+.toc-link:hover{background:rgba(204,0,0,0.1);border-color:rgba(204,0,0,0.3);color:var(--white);}
+.content{max-width:900px;margin:0 auto;padding:0 48px 80px;}
+.pla-section{margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.06);}
+.pla-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
+.pla-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:18px;flex-shrink:0;text-align:center;line-height:1.1;}
+.pla-title{font-family:var(--font-d);font-size:clamp(28px,4vw,44px);line-height:1;letter-spacing:0.5px;}
+.pla-subtitle{font-size:13px;color:var(--silver);font-family:var(--font-m);margin-top:4px;}
+.visual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:20px 0;}
+.visual-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;}
+.visual-card-title{font-size:10px;color:var(--accent);font-family:var(--font-m);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.visual-card-text{font-size:13px;color:var(--silver);line-height:1.6;}
+.capas-bar{display:flex;align-items:center;gap:10px;margin:16px 0;}
+.capas-label{font-size:11px;color:var(--silver);font-family:var(--font-m);width:140px;flex-shrink:0;}
+.capas-dots{display:flex;gap:4px;}
+.dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.dot.on{background:var(--accent);}
+.uses{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+.use-tag{background:rgba(204,0,0,0.08);border:1px solid rgba(204,0,0,0.2);color:#ff6666;padding:5px 12px;border-radius:6px;font-size:12px;}
+.tip{background:rgba(26,58,107,0.15);border:1px solid rgba(74,127,212,0.25);border-radius:10px;padding:16px 18px;margin:20px 0;font-size:13px;color:var(--silver);line-height:1.6;}
+.tip strong{color:var(--navy-l);}
+.section-intro{font-size:14px;color:var(--silver);line-height:1.75;margin-bottom:20px;}
+footer{background:var(--dark1);border-top:1px solid rgba(255,255,255,0.06);padding:32px 48px;text-align:center;}
+footer p{font-size:12px;color:var(--silver);font-family:var(--font-m);}
+footer span{color:var(--ferrari);}
+@media(max-width:768px){
+  nav,footer{padding-left:20px;padding-right:20px;}
+  .hero,.content{padding-left:20px;padding-right:20px;}
+  .toc{margin-left:20px;margin-right:20px;padding:18px;}
+  .visual-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <svg viewBox="0 0 700 600" width="36" height="36" xmlns="http://www.w3.org/2000/svg" overflow="hidden">
+      <g><path style="fill:#000;stroke:#ff6600;stroke-width:2" d="m 419,598 h 27 L 433,618 Z"/>
+      <path style="fill:#ff6600;stroke:#ff6600;stroke-width:2" d="m 407,579 h 53 l -9,11 h -37 z"/>
+      <rect style="fill:#000;stroke:#ff6600;stroke-width:2" width="17" height="27" x="425" y="439"/>
+      <rect style="fill:#000;stroke:#ff6600;stroke-width:1.6" width="16" height="70" x="425" y="471"/>
+      <path style="fill:#ff6600;stroke:#ff6600;stroke-width:3" d="m 329,585 -35,-37 1,-251 h 39 l 97,101 100,-101 h 40 v 252 l -36,38 V 359 l -86,86 -0.4,-12 h -29 v 14 l -90,-88 z"/>
+      <path style="fill:#ff6600;stroke:#ff6600;stroke-width:2" d="m 221,204 h 54 l 20,25 H 398 L 427,260 439,260 468,229 573,229 l 18,-25 h 54 L 645,235 609,280 608,668 l 7,0.3 0.3,-382 29,-37 v 424 H 601 V 267 H 472 l -29,28 0.7,26 -22,0.3 -0.7,-26 L 394,267 l -129,0.3 0.7,407 h -46 l 0.3,-422 31,40 L 251,669 259,669 258,285 221,235 Z"/></g>
+    </svg>
+    <svg viewBox="0 0 700 150" width="120" height="26" xmlns="http://www.w3.org/2000/svg" overflow="hidden">
+      <text x="0" y="120" font-family="Rajdhani,sans-serif" font-weight="700" font-size="140" letter-spacing="2" fill="#f0f2f5">MARCANO</text>
+      <text x="480" y="120" font-family="Rajdhani,sans-serif" font-weight="700" font-size="140" letter-spacing="2" fill="#f97316">TECH</text>
+    </svg>
+  </a>
+  <a href="index.html#guias" class="back-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Volver a Guías
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="cat-badge">Guía técnica · Visualización</div>
+  <h1>TIPOS DE PLA:<br><span>REFERENCIA VISUAL</span></h1>
+  <p>Cada variante de PLA genera una impresión visual completamente distinta. Esta guía te muestra cómo se ve cada tipo, qué sensación transmite y para qué ambientes y piezas es ideal, sin tener que imprimir de prueba.</p>
+</div>
+
+<div class="toc">
+  <div class="toc-title">Contenido</div>
+  <div class="toc-links">
+    <a href="#pla-estandar" class="toc-link">PLA Estándar</a>
+    <a href="#pla-plus" class="toc-link">PLA+</a>
+    <a href="#pla-matte" class="toc-link">PLA Matte</a>
+    <a href="#pla-silk" class="toc-link">PLA Silk</a>
+    <a href="#pla-clear" class="toc-link">PLA Transparente</a>
+    <a href="#pla-wood" class="toc-link">PLA Wood Fill</a>
+    <a href="#pla-marble" class="toc-link">PLA Marble</a>
+    <a href="#pla-galaxy" class="toc-link">PLA Galaxy</a>
+    <a href="#pla-metal" class="toc-link">PLA Metal Fill</a>
+    <a href="#pla-glow" class="toc-link">PLA Glow in the Dark</a>
+    <a href="#pla-rainbow" class="toc-link">PLA Rainbow</a>
+    <a href="#pla-highspeed" class="toc-link">PLA High Speed</a>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ── PLA ESTÁNDAR ── -->
+<div class="pla-section" id="pla-estandar">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">PLA</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Estándar</div>
+      <div class="pla-subtitle">La base de todo · Brillante, liso, predecible</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA estándar es el punto de partida de cualquier tipo de filamento. Ofrece un acabado con leve brillo plástico uniforme, colores sólidos y bien saturados. Es el material de referencia visual: lo que ves es exactamente lo que obtenés.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Superficie lisa con brillo plástico moderado. Los colores se ven sólidos, saturados y uniformes. Refleja la luz de forma difusa y pareja.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las líneas de capa son <strong style="color:var(--white)">visibles a distancia corta</strong>, especialmente en colores claros. A 30–50 cm se perciben como una textura horizontal suave.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Técnica, funcional, prototipo. Transmite precisión industrial sin pretensiones estéticas. Ideal cuando la función importa más que la apariencia.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Similar a plástico inyectado de calidad media. Colores intensos, líneas visibles, superficie sin imperfecciones si la impresión está bien calibrada.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media</span></div>
+  <div class="uses">
+    <span class="use-tag">Prototipos funcionales</span>
+    <span class="use-tag">Piezas técnicas</span>
+    <span class="use-tag">Accesorios taller</span>
+    <span class="use-tag">Repuestos</span>
+    <span class="use-tag">Soportes y jigs</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Talleres, escritorios funcionales, ambientes industriales y proyectos donde el aspecto es secundario. No apto para decoración o regalos premium.</div>
+</div>
+
+<!-- ── PLA+ ── -->
+<div class="pla-section" id="pla-plus">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">PLA+</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA+</div>
+      <div class="pla-subtitle">Versión mejorada · Mayor rigidez y mejor superficie</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA+ tiene una formulación mejorada que resulta en una superficie más lisa, colores más puros y mayor rigidez visual. La diferencia con el PLA estándar es sutil pero perceptible: las piezas tienen un aspecto más "terminado" y profesional.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Superficie más lisa que el PLA regular. El brillo es similar pero la textura entre capas es menos pronunciada, dando una apariencia más homogénea.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">ligeramente menos visibles</strong> que en PLA estándar. La superficie de impresión superior queda más cerrada y uniforme.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Profesional, confiable, prolijo. La pieza transmite más cuidado en el resultado final. A veces puede confundirse con una pieza de plástico inyectado.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Colores más puros y vibrantes que el PLA estándar. Menor porosidad superficial visible. Bordes con mejor definición en aristas y esquinas.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media-Baja</span></div>
+  <div class="uses">
+    <span class="use-tag">Piezas de presentación</span>
+    <span class="use-tag">Modelos técnicos</span>
+    <span class="use-tag">Accesorios de producto</span>
+    <span class="use-tag">Prototipos cliente</span>
+  </div>
+  <div class="tip"><strong>Nota:</strong> En Argentina se consigue en las marcas Bambu Lab, eSUN y Sunlu. El PLA+ de Bambu Lab tiene especialmente buena reputación en terminación superficial.</div>
+</div>
+
+<!-- ── PLA MATTE ── -->
+<div class="pla-section" id="pla-matte">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">MAT</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Matte</div>
+      <div class="pla-subtitle">Sin brillo · Aterciopelado · Capas casi invisibles</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Matte es probablemente el tipo que mejor oculta las capas de impresión. Su acabado opaco y mate dispersa la luz de forma uniforme, haciendo que la textura de capas prácticamente desaparezca a simple vista. El resultado visual es cercano a piezas inyectadas o moldeadas.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Totalmente opaco, sin ningún brillo. La superficie parece casi aterciopelada o de polvo. Los colores se ven más apagados pero muy sofisticados, tipo "diseño nórdico".</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text"><strong style="color:var(--white)">Mínima</strong>. Las capas son casi invisibles a más de 20 cm. El acabado mate difumina completamente las líneas horizontales que caracterizan a la impresión 3D.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Elegante, minimalista, premium sin exceso. Transmite calidad sobria. Ideal para objetos de diseño, decoración contemporánea y productos que quieren verse "no impresos".</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Colores tipo terracota, verde oliva, azul marino, negro absoluto. Cada color se ve con una profundidad particular. No refleja luz ni marca huellas.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Muy baja</span></div>
+  <div class="uses">
+    <span class="use-tag">Decoración del hogar</span>
+    <span class="use-tag">Maceteros y organizers</span>
+    <span class="use-tag">Figuras de diseño</span>
+    <span class="use-tag">Regalos premium</span>
+    <span class="use-tag">Ambiente nórdico / minimalista</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Living, dormitorio, oficina de diseño. Combina perfectamente con madera clara, concreto y paletas de colores neutros. Evitar en ambientes técnicos o industriales donde puede parecer demasiado "artístico".</div>
+</div>
+
+<!-- ── PLA SILK ── -->
+<div class="pla-section" id="pla-silk">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">SLK</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Silk</div>
+      <div class="pla-subtitle">Efecto sedoso · Metalizado visual · Alto impacto</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Silk tiene un acabado brillante con efecto sedoso que simula superficies metálicas. Es el tipo de PLA más llamativo visualmente: las piezas parecen fundidas en metal o recubiertas en pintura metálica. El brillo cambia con el ángulo de visión, creando un efecto muy atractivo.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Brillo alto con efecto metalizado/nacarado. La superficie refleja la luz creando gradientes y brillos que varían según el ángulo. Simula acabados de joyería o fundición metálica.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">visibles pero se mimetizan</strong> con el efecto sedoso. El brillo hace que el ojo las perciba como parte del diseño y no como defecto de impresión.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Lujo, exclusividad, impacto. Transmite que la pieza fue hecha con atención al detalle decorativo. Captura la luz y llama la atención desde el primer vistazo.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Colores típicos: oro, plata, cobre, rosa gold, azul eléctrico, verde esmeralda. Cada color tiene un carácter metálico distinto. No existe en colores claros sin efecto metálico.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media (integrada al efecto)</span></div>
+  <div class="uses">
+    <span class="use-tag">Decoración premium</span>
+    <span class="use-tag">Figuras coleccionables</span>
+    <span class="use-tag">Joyería impresa</span>
+    <span class="use-tag">Trofeos y reconocimientos</span>
+    <span class="use-tag">Lámparas y velas</span>
+    <span class="use-tag">Piezas de exhibición</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Ambientes cálidos con buena iluminación. Bajo luz amarilla o luz rasante el efecto metálico se potencia notablemente. Ideal para tiendas, eventos y regalos corporativos.</div>
+</div>
+
+<!-- ── PLA TRANSPARENTE ── -->
+<div class="pla-section" id="pla-clear">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">CLR</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Transparente / Clear</div>
+      <div class="pla-subtitle">Translúcido · Deja pasar la luz · Efecto cristal</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Clear no es transparente como el vidrio, sino translúcido: deja pasar la luz pero la difunde. Las capas de impresión crean un efecto estético particular donde la luz atraviesa la pieza generando patrones internos visibles desde afuera.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Translúcido blancuzco o con tinte de color (clear azul, clear verde, clear naranja). No es transparente sino que difunde la luz. Se ve como plástico acrílico en calidad media.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text"><strong style="color:var(--white)">Las capas son el protagonista</strong>. Se ven claramente desde adentro y afuera de la pieza. Con retroiluminación se vuelven un elemento estético interesante.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Etéreo, tecnológico, de laboratorio. La pieza parece casi "holográfica" cuando la luz la atraviesa. Transmite delicadeza estructural y modernidad.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Mejor resultado con paredes delgadas (1–2 perímetros). Con más pared se vuelve más opaco. Ideal en combinación con iluminación LED interna.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Alta (es parte del efecto)</span></div>
+  <div class="uses">
+    <span class="use-tag">Lámparas y difusores LED</span>
+    <span class="use-tag">Contenedores decorativos</span>
+    <span class="use-tag">Maquetas con iluminación</span>
+    <span class="use-tag">Letras luminosas</span>
+    <span class="use-tag">Arte generativo</span>
+  </div>
+  <div class="tip"><strong>Tip:</strong> Grilon3 y Sunlu tienen versiones Clear disponibles en Argentina. Con 1 mm de pared y LED RGB interno, el efecto visual es espectacular para lámparas de escritorio.</div>
+</div>
+
+<!-- ── PLA WOOD FILL ── -->
+<div class="pla-section" id="pla-wood">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">WOD</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Wood Fill</div>
+      <div class="pla-subtitle">Relleno de madera · Textura orgánica · Aspecto natural</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Wood Fill contiene partículas reales de madera (serrín fino) mezcladas en el filamento. El resultado visual es sorprendentemente natural: la pieza parece madera real a simple vista, y puede lijarse, teñirse o barnizarse como si lo fuera.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Textura rugosa similar a madera de grano fino. Color entre beige claro y marrón oscuro según temperatura. Las vetas se generan naturalmente con las capas.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas <strong style="color:var(--white)">crean efecto de veta de madera</strong> en las paredes laterales. Lejos de ser un defecto, esto suma al realismo del acabado natural.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Cálido, artesanal, orgánico. La pieza transmite conexión con la naturaleza. Es el único tipo de PLA donde la textura de impresión aporta valor visual en lugar de restarlo.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Lijado con lija 220 queda suave como madera real. Con barniz o aceite de lino el efecto es casi indistinguible de pieza tallada. Sin post-proceso, tiene aspecto rústico-artesanal.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media (efecto veta)</span></div>
+  <div class="uses">
+    <span class="use-tag">Marcos y cuadros</span>
+    <span class="use-tag">Decoración rústica / boho</span>
+    <span class="use-tag">Piezas de living</span>
+    <span class="use-tag">Cajas y organizadores</span>
+    <span class="use-tag">Figuras naturales</span>
+    <span class="use-tag">Regalos artesanales</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Espacios con decoración natural, madera, plantas. Ambientes rústicos, boho, o nórdico cálido. No recomendable en ambientes técnicos o modernos de acero y concreto.</div>
+</div>
+
+<!-- ── PLA MARBLE ── -->
+<div class="pla-section" id="pla-marble">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">MRB</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Marble / Mármol</div>
+      <div class="pla-subtitle">Vetas blancas y grises · Efecto piedra natural</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Marble simula el aspecto del mármol mediante pigmentos distribuidos de forma irregular en el filamento. Las vetas se generan solas durante la impresión y cada pieza queda única. El resultado es elegante y arquitectónico.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Blanco o gris claro con vetas grises o negras irregulares. Las vetas varían en cada pieza. La superficie tiene leve brillo semi-mate que simula piedra pulida.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas se <strong style="color:var(--white)">disimulan con las vetas</strong>. El patrón irregular de los pigmentos hace que el ojo interprete las líneas como parte del mármol y no de la impresión.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Arquitectónico, sofisticado, clásico con modernidad. La pieza transmite peso visual y permanencia. Ideal para objetos que quieren parecer caros sin serlo.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Maceteros, bases, mesas auxiliares, piezas de baño. Con buena resolución de capa (0.15 mm) las vetas quedan muy definidas. Cada pieza es irrepetible.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media-Baja</span></div>
+  <div class="uses">
+    <span class="use-tag">Maceteros premium</span>
+    <span class="use-tag">Bases de objetos</span>
+    <span class="use-tag">Decoración de baño</span>
+    <span class="use-tag">Esculturas de diseño</span>
+    <span class="use-tag">Piezas arquitectónicas</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Baños, cocinas, espacios con tonos blancos y grises. Combina perfectamente con acero inoxidable, griferías cromadas y superficies de hormigón pulido.</div>
+</div>
+
+<!-- ── PLA GALAXY ── -->
+<div class="pla-section" id="pla-galaxy">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">GLX</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Galaxy / Starlight</div>
+      <div class="pla-subtitle">Partículas brillantes · Efecto noche estrellada</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Galaxy contiene micropartículas metálicas o reflectantes distribuidas en una base oscura (típicamente negra, azul marino o morado). Bajo luz directa, la pieza brilla como el cielo nocturno, con pequeños destellos que cambian según el ángulo de observación.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Base oscura con puntos de brillo plateado, dorado o multicolor. Las partículas capturan la luz en forma de destellos irregulares. El efecto varía dramáticamente según la iluminación del ambiente.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">muy poco visibles</strong>. Las partículas actúan como ruido visual que oculta completamente las líneas de impresión.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Misterioso, espacial, premium oscuro. La pieza transmite profundidad y sofisticación nocturna. Funciona muy bien en objetos que se exhiben bajo spot de luz.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Bajo luz difusa parece simplemente oscuro con algo de brillo. Bajo luz puntual o rayos de sol, el efecto galaxia aparece plenamente con destellos en todo el cuerpo.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Muy baja</span></div>
+  <div class="uses">
+    <span class="use-tag">Objetos de escritorio</span>
+    <span class="use-tag">Figuras coleccionables</span>
+    <span class="use-tag">Piezas de exhibición</span>
+    <span class="use-tag">Decoración nocturna</span>
+    <span class="use-tag">Regalos especiales</span>
+  </div>
+  <div class="tip"><strong>Entorno ideal:</strong> Ambientes oscuros con iluminación dramática. Bajo luz rasante o spot puntual el efecto es máximo. No destacable bajo luz fluorescente uniforme.</div>
+</div>
+
+<!-- ── PLA METAL FILL ── -->
+<div class="pla-section" id="pla-metal">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">MTL</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Metal Fill</div>
+      <div class="pla-subtitle">Polvo metálico real · Bronce · Cobre · Acero</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Metal Fill contiene polvo metálico real (bronce, cobre, hierro, acero, oro) mezclado en el filamento. Las piezas tienen peso real mayor al PLA común y se pueden pulir, oxidar y pátinar como si fueran metal sólido. Es el tipo de PLA más cercano a una fundición metálica.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Sin post-proceso: opaco y mate con tono metálico. Con lijado y pulido: brilla como metal real. Con oxidantes químicos: se puede pátinar en verde (cobre), negro (hierro) o marrón (bronce).</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">visibles antes del post-proceso</strong> y desaparecen después de lijar. El pulido transforma completamente la apariencia de la pieza.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Antiguo, artístico, escultórico. La pieza parece fundida en metal, no impresa. Con pátina de envejecimiento transmite historia y arte clásico. Sin post-proceso: industrial y mate.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">El resultado post-proceso puede engañar incluso a personas que conocen impresión 3D. Se usa para estatuillas, trofeos y arte sin presupuesto para fundición real.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media (antes de post-proceso)</span></div>
+  <div class="uses">
+    <span class="use-tag">Trofeos y premios</span>
+    <span class="use-tag">Figuras artísticas</span>
+    <span class="use-tag">Réplicas escultóricas</span>
+    <span class="use-tag">Joyería de diseño</span>
+    <span class="use-tag">Decoración premium</span>
+  </div>
+  <div class="tip"><strong>Atención:</strong> Requiere boquilla endurecida (hardened steel) para no desgastar el latón estándar. Disponible en marcas especializadas. Precio significativamente mayor al PLA estándar.</div>
+</div>
+
+<!-- ── PLA GLOW IN THE DARK ── -->
+<div class="pla-section" id="pla-glow">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">GLW</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Glow in the Dark</div>
+      <div class="pla-subtitle">Fosforescente · Verde / Azul nocturno · Dual aspecto</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Glow in the Dark tiene una apariencia diurna y una apariencia nocturna completamente diferentes. De día parece un PLA levemente opaco con tono crema o verde pálido. De noche, tras exponerse a luz, emite un brillo propio que puede durar varias horas.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia (luz)</div>
+      <div class="visual-card-text">Blancuzco o verde pálido, con aspecto levemente opaco. De día no tiene nada de especial visualmente y puede parecer una pieza ordinaria.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia (oscuridad)</div>
+      <div class="visual-card-text">Verde o azul intenso brillante. El brillo varía según el tiempo de exposición a luz y la intensidad de la carga. Puede ser muy intenso los primeros 30 minutos.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">visibles de día</strong>. De noche, el brillo propio las oculta completamente porque el efecto luminoso domina toda la superficie.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">De día: neutro. De noche: mágico, fantasmagórico, lúdico. Es el único PLA con dos "personalidades" completamente distintas en el mismo objeto.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas (día)</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media</span></div>
+  <div class="uses">
+    <span class="use-tag">Habitaciones infantiles</span>
+    <span class="use-tag">Señalética de emergencia</span>
+    <span class="use-tag">Objetos de juego</span>
+    <span class="use-tag">Decoración de Halloween</span>
+    <span class="use-tag">Arte nocturno</span>
+  </div>
+  <div class="tip"><strong>Nota:</strong> Los pigmentos fosforescentes requieren boquilla endurecida. El color diurno no es configurable (siempre claro). Disponible con carga de luz UV para mayor intensidad nocturna.</div>
+</div>
+
+<!-- ── PLA RAINBOW ── -->
+<div class="pla-section" id="pla-rainbow">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">RBW</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA Rainbow / Multicolor</div>
+      <div class="pla-subtitle">Degradado natural · Sin cambio de filamento · Cromático</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA Rainbow tiene pigmentos que cambian gradualmente a lo largo del carrete. Sin necesidad de sistemas multicolor, la pieza impresa va cambiando de color a medida que sube la altura. El resultado es un degradado cromático irrepetible en cada impresión.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Colores que van cambiando capa a capa: del rojo al naranja, amarillo, verde, azul, violeta y de vuelta. No hay control sobre qué color aparece en qué sección de la pieza.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">visibles y forman el patrón</strong>. Cada capa es una banda de color, lo que convierte las líneas de impresión en el propio diseño del objeto.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Festivo, colorido, juguetón, artístico. Transmite energía y dinamismo. Imposible pasar desapercibido. Ideal para objetos que quieren ser el centro de atención.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Cada pieza es única e irrepetible. Mismo archivo, misma impresora, mismo carrete: dos piezas nunca quedan exactamente igual. El azar es parte del diseño.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Alta (es el diseño)</span></div>
+  <div class="uses">
+    <span class="use-tag">Decoración de fiesta</span>
+    <span class="use-tag">Juguetes y miniaturas</span>
+    <span class="use-tag">Arte pop</span>
+    <span class="use-tag">Souvenirs</span>
+    <span class="use-tag">Habitaciones infantiles</span>
+    <span class="use-tag">Objetos únicos</span>
+  </div>
+  <div class="tip"><strong>Limitación:</strong> No apto para piezas funcionales, piezas técnicas o ambientes donde se requiere uniformidad de color. El resultado final no es controlable con precisión.</div>
+</div>
+
+<!-- ── PLA HIGH SPEED ── -->
+<div class="pla-section" id="pla-highspeed">
+  <div class="pla-header">
+    <div class="pla-icon" style="background:rgba(204,0,0,0.1);color:#cc0000;">HSP</div>
+    <div>
+      <div class="pla-title" style="color:var(--white);">PLA High Speed</div>
+      <div class="pla-subtitle">Alta velocidad · Superficie más rugosa · Producción rápida</div>
+    </div>
+  </div>
+  <p class="section-intro">El PLA High Speed está formulado para imprimir a velocidades de 300–600 mm/s sin degradar la calidad estructural. Visualmente, a alta velocidad la superficie tiene mayor textura que el PLA estándar a velocidad normal, pero el tiempo de impresión se reduce a un tercio o menos.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="visual-card-title">Apariencia</div>
+      <div class="visual-card-text">Similar al PLA+ pero con posible mayor textura superficial en paredes si se imprime a velocidades extremas. A velocidades moderadas (150–200 mm/s) la diferencia visual es mínima.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Visibilidad de capas</div>
+      <div class="visual-card-text">Las capas son <strong style="color:var(--white)">similares al PLA+</strong>. A alta velocidad puede haber levemente más textura en la pared exterior, especialmente en curvas.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Sensación visual</div>
+      <div class="visual-card-text">Equivalente al PLA+. La diferencia está en el proceso, no en el resultado final si la impresora está bien calibrada. Para el observador externo no hay diferencia perceptible.</div>
+    </div>
+    <div class="visual-card">
+      <div class="visual-card-title">Aspecto final</div>
+      <div class="visual-card-text">Con buena calibración de temperatura y velocidad, el resultado visual es indistinguible del PLA+. La ventaja real es el tiempo de producción, no la estética.</div>
+    </div>
+  </div>
+  <div class="capas-bar"><span class="capas-label">Visibilidad de capas</span><div class="capas-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:11px;color:var(--silver);font-family:var(--font-m)">Media-Baja</span></div>
+  <div class="uses">
+    <span class="use-tag">Producción en serie</span>
+    <span class="use-tag">Prototipos rápidos</span>
+    <span class="use-tag">Piezas funcionales</span>
+    <span class="use-tag">Pedidos de volumen</span>
+  </div>
+  <div class="tip"><strong>Disponible en Argentina:</strong> Bambu Lab tiene su propio High Speed PLA optimizado para impresoras Bambu. También disponible en eSUN. Requiere impresora con hot-end de alta temperatura y enfriamiento agresivo.</div>
+</div>
+
+</div>
+
+<footer>
+  <div style="display:flex;justify-content:center;margin-bottom:12px">
+    <svg viewBox="0 0 290 40" width="150" height="22" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="34" font-family="Rajdhani,sans-serif" font-weight="700" font-size="38" letter-spacing="1" fill="#f0f2f5">MARCANO</text>
+      <text x="200" y="34" font-family="Rajdhani,sans-serif" font-weight="700" font-size="38" letter-spacing="1" fill="#f97316">TECH</text>
+    </svg>
+  </div>
+  <p>© 2026 MarcanoTech · Buenos Aires · <a href="index.html" style="color:var(--ferrari)">marcanotech.com</a></p>
+</footer>
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  style="position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;
+  background:#cc0000;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;
+  box-shadow:0 4px 16px rgba(204,0,0,0.4);z-index:99" title="Volver al inicio">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+<script>
+const st = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => {
+  st.style.opacity = window.scrollY > 400 ? '1' : '0';
+  st.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
+});
+</script>
+</body>
+</html>

@@ -1123,7 +1123,7 @@ function renderGraficos(){
           <tbody>${entries.map(h=>`<tr>
             <td style="font-family:var(--mono);font-size:11px">${h.fecha||'—'}</td>
             <td style="font-size:12px;font-weight:600">${h.nombre||'—'}</td>
-            <td style="font-size:12px;color:var(--ferrari)">${h.materialNombre||'—'}</td>
+            <td style="font-size:12px;color:var(--ferrari)">${h.materialNombre||'—'}${h.materialMarca?`<br><span style="font-size:10px;color:var(--text3);font-weight:400">${h.materialMarca}</span>`:''}</td>
             <td style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--amber)">${parseFloat(h.gramosUsados||0).toFixed(2)}g</td>
             <td style="font-size:11px;color:var(--text3)">${h.impresora||'—'}</td>
             <td style="font-family:var(--mono);font-size:11px">${h.tiempo||'—'}</td>
@@ -1273,7 +1273,7 @@ function renderTimerHistorial(){
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
             <span style="font-family:var(--mono);color:var(--ferrari);font-weight:700;font-size:14px">${h.tiempo||'—'}</span>
             ${h.impresora?`<span style="font-size:10px;color:var(--text3);font-family:var(--mono)">🖨️ ${h.impresora}</span>`:''}
-            ${h.materialNombre?`<span style="font-size:10px;color:var(--ferrari);font-family:var(--mono)">⬡ ${h.materialNombre}</span>`:''}
+            ${h.materialNombre?`<span style="font-size:10px;color:var(--ferrari);font-family:var(--mono)">⬡ ${h.materialNombre}${h.materialMarca?` · ${h.materialMarca}`:''}</span>`:''}
             ${h.gramosUsados>0?`<span style="font-size:10px;color:var(--amber);font-family:var(--mono);font-weight:700">🔴 ${parseFloat(h.gramosUsados||0).toFixed(2)}g</span>`:''}
             ${h.proyectoNombre?`<span style="font-size:10px;color:var(--text3);font-family:var(--mono)">📁 ${h.proyectoNombre}</span>`:''}
             <span style="font-size:10px;color:var(--text3);font-family:var(--mono)">📅 ${h.fecha||'—'}</span>
@@ -1413,6 +1413,7 @@ function saveTimerEntry(){
     fecha: document.getElementById('tedit-fecha').value,
     materialId: mat?.id||'',
     materialNombre: mat ? `${mat.tipo} ${mat.color}` : DB.timerHistorial[idx].materialNombre||'',
+    materialMarca: mat ? mat.marca||'' : DB.timerHistorial[idx].materialMarca||'',
     proyectoId: proy?.id||'',
     proyectoNombre: proy?.nombre||'',
   };
@@ -1467,6 +1468,7 @@ function timerFinish(){
     impresora:impresora?impresora.nombre:'',
     gramosUsados,
     materialNombre: mat ? `${mat.tipo} ${mat.color}` : '',
+    materialMarca: mat ? mat.marca||'' : '',
     proyectoNombre:proy?proy.nombre:'',
     fecha:new Date().toLocaleDateString('es-AR'),ts:Date.now()};
   DB.timerHistorial.unshift(entry);

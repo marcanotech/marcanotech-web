@@ -770,17 +770,19 @@ function initFirebasePortal() {
     firebaseAuth = firebase.auth();
     firebaseDB   = firebase.database();
 
-    let _firstAuthCheck = true;
-    firebaseAuth.onAuthStateChanged(user => {
-      const wasFirstCheck = _firstAuthCheck;
-      _firstAuthCheck = false;
-      if (user) {
-        currentPortalUser = user;
-        onUserLoggedIn(user, wasFirstCheck);
-      } else {
-        currentPortalUser = null;
-        onUserLoggedOut();
-      }
+    firebaseAuth.signOut().catch(()=>{}).then(()=>{
+      let _firstAuthCheck = true;
+      firebaseAuth.onAuthStateChanged(user => {
+        const wasFirstCheck = _firstAuthCheck;
+        _firstAuthCheck = false;
+        if (user) {
+          currentPortalUser = user;
+          onUserLoggedIn(user, wasFirstCheck);
+        } else {
+          currentPortalUser = null;
+          onUserLoggedOut();
+        }
+      });
     });
   } catch(e) {
     console.warn('Firebase portal init error:', e);
