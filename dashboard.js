@@ -735,6 +735,14 @@ function updatePriceHint(inputId, hintId){
   hint.textContent = ars ? '≈ $'+Math.round(ars).toLocaleString('es-AR')+' ARS' : '';
 }
 
+function updatePriceHintARS(inputId, hintId){
+  const val = parseFloat(document.getElementById(inputId)?.value)||0;
+  const hint = document.getElementById(hintId);
+  if(!hint) return;
+  const usd = arsToUsd(val);
+  hint.textContent = usd ? '≈ US$'+usd.toFixed(2) : '';
+}
+
 // ════════════════════════════════
 // THEME
 // ════════════════════════════════
@@ -2362,7 +2370,8 @@ function saveProducto(){
     relleno:parseInt(document.getElementById('prod-relleno')?.value)||0,
     stlRef:document.getElementById('prod-stl-ref')?.value||'',
     sku:document.getElementById('prod-sku').value||'—',
-    precio:parseFloat(document.getElementById('prod-precio').value)||0,
+    precioARS:parseFloat(document.getElementById('prod-precio').value)||0,
+    precio:_dolarRate ? Math.round((parseFloat(document.getElementById('prod-precio').value)||0)/_dolarRate*100)/100 : 0,
     stock:parseInt(document.getElementById('prod-stock').value)||0,
     categoria:document.getElementById('prod-categoria').value,
     descripcion:document.getElementById('prod-descripcion').value,
@@ -2404,9 +2413,9 @@ function renderProductos(){
   grid.innerHTML = DB.productos.map(p=>{
     const stock=parseInt(p.stock||0);
     const sc = stock>5?'var(--teal)':stock>0?'var(--amber)':'var(--coral)';
-    const usdP = parseFloat(p.precio)||0;
-    const arsP = usdP && _dolarRate ? Math.round(usdP*_dolarRate) : null;
-    const arsStr = usdP ? (arsP ? `$${arsP.toLocaleString('es-AR')}<br><span style="font-size:10px;color:var(--text3)">US$${usdP.toFixed(2)}</span>` : `US$${usdP.toFixed(2)}`) : '—';
+    const arsP = parseFloat(p.precioARS)||(parseFloat(p.precio)&&_dolarRate?Math.round(parseFloat(p.precio)*_dolarRate):0);
+    const usdP = arsP&&_dolarRate ? (arsP/_dolarRate) : parseFloat(p.precio)||0;
+    const arsStr = arsP ? `$${Math.round(arsP).toLocaleString('es-AR')}<br><span style="font-size:10px;color:var(--text3)">${usdP?`US$${usdP.toFixed(2)}`:''}</span>` : (usdP?`US$${usdP.toFixed(2)}`:'—');
     const fabInfo = [p.tiempo?`⏱ ${p.tiempo}`:'', p.gramos?`${p.gramos}g`:''].filter(Boolean).join(' · ');
     const imgSrc = p.imagen || (Array.isArray(p.imagenes) && p.imagenes[0]?.dataUrl) || '';
     const webBadge = p.publicarWeb
@@ -2445,7 +2454,7 @@ function editProducto(id){
   document.getElementById('prod-nombre').value=p.nombre;
   document.getElementById('prod-emoji').value=p.emoji||'📦';
   document.getElementById('prod-sku').value=p.sku||'';
-  document.getElementById('prod-precio').value=p.precio||'';
+  document.getElementById('prod-precio').value=p.precioARS||(p.precio&&_dolarRate?Math.round(p.precio*_dolarRate):p.precio)||'';
   document.getElementById('prod-stock').value=p.stock||'';
   document.getElementById('prod-categoria').value=p.categoria||'';
   document.getElementById('prod-descripcion').value=p.descripcion||'';
